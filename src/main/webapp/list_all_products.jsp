@@ -7,7 +7,44 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>List Of Products</title>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  td a {
+    text-decoration: none;
+  }
+
+  button {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #005F7D;
+  }
+</style>
 </head>
 <body>
 
@@ -20,18 +57,18 @@
 
 	<table border=1>
 		<tr>
-			<th>id</th>
-			<th>name</th>
-			<th>description</th>
-			<th>weight</th>
-			<th>quantityUnit</th>
-			<th>price</th>
-			<th>ingredients</th>
-			<th>benefits</th>
-			<th>howToUse</th>
-			<th>shelfLife</th>
-			<th>categoryId</th>
-			<th>Actions</th>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Weight</th>
+			<th>QuantityUnit</th>
+			<th>Price</th>
+			<th>Ingredients</th>
+			<th>Benefits</th>
+			<th>HowToUse</th>
+			<th>ShelfLife</th>
+			<th>CategoryId</th>
+			<th colspan="3">Actions</th>
 			
 		</tr>
 		<%

@@ -18,10 +18,10 @@ import in.fssa.missnature.service.ProductService;
 public class CreateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Product product = new Product();
@@ -49,14 +49,12 @@ public class CreateProduct extends HttpServlet {
 		product.setShelfLife(shelfLife);
 		
 		ProductService prodService = new ProductService();
-		
-		try {
-			prodService.createProduct(product);
-			response.sendRedirect(request.getContextPath()+"/list_all_products");
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("Invalid data");
-		}
+
+			try {
+				prodService.createProduct(product);
+				response.sendRedirect(request.getContextPath()+"/list_all_products");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

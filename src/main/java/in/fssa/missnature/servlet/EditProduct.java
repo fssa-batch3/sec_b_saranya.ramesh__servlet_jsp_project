@@ -28,7 +28,7 @@ public class EditProduct extends HttpServlet {
 		String id = request.getParameter("id");		
 																
 		try {
-			Product productDetails = new ProductService().FindProductDetailsByProductId(Integer.parseInt(id));
+			Product productDetails = new ProductService().findProductDetailsByProductId(Integer.parseInt(id));
 			request.setAttribute("product", productDetails);
 					
 			RequestDispatcher rd = request.getRequestDispatcher("/update_product.jsp");

@@ -20,7 +20,7 @@ import in.fssa.missnature.service.ProductService;
 @WebServlet("/product/update")
 public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

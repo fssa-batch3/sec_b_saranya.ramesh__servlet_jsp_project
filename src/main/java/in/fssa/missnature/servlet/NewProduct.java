@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/product/new")
 public class NewProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +25,4 @@ public class NewProduct extends HttpServlet {
 		rd.forward(request, response);
 		
 	}
-
-
-
 }
