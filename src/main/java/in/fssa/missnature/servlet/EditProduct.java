@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.model.Product;
 import in.fssa.missnature.service.ProductService;
 
@@ -32,12 +33,10 @@ public class EditProduct extends HttpServlet {
 			request.setAttribute("product", productDetails);
 					
 			RequestDispatcher rd = request.getRequestDispatcher("/update_product.jsp");
-			rd.forward(request, response);
-
+			rd.forward(request, response);			
 		}
-		catch(Exception e) {
+		catch(ServiceException e) {
 		e.printStackTrace();
 		}
 	}
-
 }

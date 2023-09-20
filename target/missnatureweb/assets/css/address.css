@@ -1,0 +1,193 @@
+    body {
+      font-family: Arial;
+      font-size: 17px;
+      padding: 8px;
+    }
+
+    .row {
+      display: -ms-flexbox;
+      /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap;
+      /* IE10 */
+      flex-wrap: wrap;
+      margin: 0 200px;
+    }
+
+    .row2 {
+      display: -ms-flexbox;
+      /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap;
+      /* IE10 */
+      flex-wrap: wrap;
+      margin: 0 200px;
+    }
+
+    .col-25 {
+      -ms-flex: 25%;
+      /* IE10 */
+      flex: 25%;
+    }
+
+    .col-50 {
+      -ms-flex: 50%;
+      /* IE10 */
+      flex: 50%;
+    }
+
+    .col-50 h3 {
+      margin: 25px 0;
+      font-size: x-large;
+    }
+    .col-75 {
+      -ms-flex: 75%;
+      /* IE10 */
+      flex: 75%;
+      margin-top: 75px;
+    }
+    .container {
+      background-color: #f2f2f2;
+      padding: 5px 20px 15px 20px;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+    }
+    input[type=text] {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    label {
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+
+    #btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      width: 100%;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    #btn:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      color: #2196F3;
+    }
+
+    hr {
+      border: 1px solid lightgrey;
+    }
+
+    span.price {
+      float: right;
+      color: grey;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container2 {
+      width: 100%;
+      height: 100vh;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgb(233, 231, 231);
+    }
+
+    .btn {
+      padding: 10px 60px;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      background: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      border-radius: 30px;
+    }
+
+    .popup {
+      width: 400px;
+      background: #fff;
+      border-radius: 6px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%)scale(0.1);
+      text-align: center;
+      padding: 0px 30px 30px;
+      color: #333;
+      visibility: hidden;
+      transition: transform 0.4s, top 0.4s;
+    }
+
+    .open-popup {
+      visibility: visible;
+      top: 50%;
+      transform: translate(-50%, -50%)scale(1);
+    }
+
+    .popup img {
+      width: 100px;
+      margin-top: -50px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px(0 0 0 0.2px);
+    }
+
+    .popup h2 {
+      font-size: 38px;
+      font-weight: 500;
+      margin: 30px 0px 10px;
+    }
+
+    .popup p {
+      margin-top: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .popup button {
+      width: 100%;
+      margin-top: 40px;
+      padding: 10px 0;
+      background: #04AA6D;
+      color: #fff;
+      border: 0;
+      outline: none;
+      font-size: 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 5px 5px(0 0 0 0.2px);
+    }
+
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+
+      .col-25 {
+        margin-bottom: 20px;
+      }
+    }

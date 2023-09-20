@@ -1,0 +1,99 @@
+.body{
+    margin:50px 100px 50px 100px;
+}
+.top{
+    display:flex;
+    /* padding:50px 0px 50px 0px; */
+}
+.top img{
+    width:60%;
+    border-radius: 50%;
+}
+.user_name{
+    
+    margin-top: 30px;
+}
+.user_name h3{
+    font-style: italic;
+}
+.user_name p{
+    margin-top: 10px;
+}
+.detail{
+    width:300px;
+    background-color:antiquewhite;
+    height:500px;
+    padding:0px 20px;
+    box-shadow: 0 0 10px 0px rgba(3, 3, 3, 0.1);
+}
+.detail h3{
+    font-style:italic;
+    font-size: xx-large;
+    padding-top:20px;
+    text-align: center;
+    color:black;
+}
+.dash-box{
+    margin-top:30px;
+}
+.detail button{
+    background: transparent;
+    border-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+    color: #263e3e;
+}
+.whole-sec{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+    /* justify-content: space-evenly; */
+}
+.profile{
+    border-style: none;
+    width:700px;
+    margin-left: 100px;
+    box-shadow: 0 0 10px 0px rgba(3, 3, 3, 0.1);
+}
+form{
+    padding: 15px 50px;
+}
+ input{
+    background: transparent;
+    border-color: transparent;
+    border-bottom-color: black;
+    width: 300px;
+    position: absolute;
+    right: 23%;
+    font-size: 18px;;
+    font-family: ui-monospace;
+}
+.profile div{
+    padding:10px 20px;
+}
+.profile h3{
+    font-style:italic;
+    font-size: xx-large;
+    padding-top:20px;
+    text-align: center;
+    color: black;
+}
+.profile label{
+    font-size: 18px;;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+.form{
+    margin-top: 20px;
+}
+#edit{
+    padding:5px 30px;
+    margin-top: 5px;
+}
+#save{
+    padding:5px 30px;
+    margin-top: 5px;
+}

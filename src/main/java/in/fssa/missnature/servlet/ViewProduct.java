@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.model.Product;
 import in.fssa.missnature.service.ProductService;
 
@@ -34,7 +35,7 @@ public class ViewProduct extends HttpServlet {
 			rd.forward(request, response);
 
 		}
-		catch(Exception e) {
+		catch(ServiceException e) {
 		e.printStackTrace();
 		}
 	}

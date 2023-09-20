@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.model.Product;
 import in.fssa.missnature.model.Product.QuantityUnit;
 import in.fssa.missnature.service.ProductService;
@@ -54,7 +56,7 @@ public class ProductCreate extends HttpServlet {
 			prodService.createProduct(product);
 			response.sendRedirect("list_all_products");
 		}
-		catch(Exception e) {
+		catch(ServiceException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Invalid data");
 		}

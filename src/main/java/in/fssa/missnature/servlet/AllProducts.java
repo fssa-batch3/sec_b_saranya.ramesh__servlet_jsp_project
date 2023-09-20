@@ -22,19 +22,53 @@ public class AllProducts extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String id = request.getParameter("id");	
-		ProductService ps = new ProductService();
-	try {
-		Set<Product> product = ps.findProductDetailByCategoryId(Integer.parseInt(id));
-		request.setAttribute("productListByCate", product);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
-		dispatcher.forward(request, response);
 		
-	} catch (Exception e) {
-		e.printStackTrace();
+		if(request.getParameter("id") != null) {
+			
+			String id = request.getParameter("id");
+			ProductService ps = new ProductService();
+		
+			try {
+				Set<Product> product = ps.findProductDetailByCategoryId(Integer.parseInt(id));
+				request.setAttribute("productListByCate", product);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
+				dispatcher.forward(request, response);
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(request.getParameter("prod_type") != null) {
+			
+			String prodType = request.getParameter("prod_type");
+			ProductService ps = new ProductService();
+			
+		try {
+			Set<Product> product = ps.listAllProductByProductType(prodType);
+			request.setAttribute("productListByCate", product);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
+			dispatcher.forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		}
+		else if(request.getParameter("skin_type") != null) {
+			String skinType = request.getParameter("skin_type");
+			ProductService ps = new ProductService();
+			
+			try {
+				Set<Product> product = ps.listAllProductsBySkinType(skinType);
+				request.setAttribute("productListByCate", product);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
+				dispatcher.forward(request, response);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	
 	}
-	}
-
 }

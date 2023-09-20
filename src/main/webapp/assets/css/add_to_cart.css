@@ -1,0 +1,148 @@
+.head{
+  margin:100px 0px 0px 100px;
+}
+.single_prod{
+  display: flex;
+  margin:20px;
+}
+.my-cart{
+  margin-top: 20px;
+  padding: 10px 15px;
+}
+.cart-amt{
+  margin:30px 30px;
+}
+.cart-total p{
+  margin-left: 30px;
+  padding: 5px 0px;
+}
+.prod_info h2{
+  margin:-3px 0px 20px; 
+  /* font-family:'Montserrat', sans-serif;  */
+}
+
+.prof_img{
+  justify-content: center;
+  align-items: center;
+}
+.status{
+  margin:10px 30px 0px 30px;
+}
+.status p{
+  margin:10px 0px;
+}
+.status_img{
+  position: relative;
+  top:15px;
+}
+.minus_1{
+  width: 18px;
+  margin-right: 15px;
+}
+.num{
+  font-size: 23px;
+}
+.plus_1{
+  width:18px;
+  margin-left: 15px;
+}
+.qty-btn{
+  padding: 5px 10px;
+}
+.prodname{
+  font-size: larger;
+}
+
+.my-cart{
+  font-family:'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color:#1c3a1c;
+}
+.qty-btn {
+  background-color: transparent;
+  padding: 5px 15px;
+  border-color: #cfcece;
+}
+.num {
+  font-size: 23px;
+}
+.minus_1 {
+  width: 20px;
+  margin-right: 10px;
+}
+.plus_1 {
+  width: 20px;
+  margin-left: 10px;
+}
+tr th{
+  background-color: #263e3e;
+    color:white;
+}
+th{
+  padding:20px 50px;
+  margin-left:50px;
+  font-family: 'Dancing Script', cursive;
+  font-size: larger;
+  font-weight: 700;
+}
+td{
+  margin-left: 50px;
+  text-align: center;
+  padding-top:20px;
+}
+td input{
+  max-width: 25px;
+}
+
+table{
+  margin:50px 100px 100px 170px;
+  padding-bottom: 20px;
+  /* margin-left:200px; */
+  border-style: solid;
+  border-color: lightgray;
+}
+.orders{
+  margin-top:50px;
+}
+.orders h1{
+  margin-left:200px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: xx-large;
+  font-weight: 700;
+  color: #1c3a1c
+}
+.cart-total{
+  display:flex;
+  justify-content: space-between;
+}
+.cart-amt{
+  border-style: solid;
+  border-color: lightgray;
+  max-width: 500px;
+  margin-left:860px;
+  padding:30px;
+}
+.cart-amt p{
+  font-family:'Montserrat', sans-serif;
+  margin-top: 10px;
+}
+
+.cart-amt h2{
+  font-family:'Montserrat', sans-serif;
+  font-size:xx-large;
+  font-weight: 700;
+  margin-top:-7px;
+  color:#1c3a1c;
+}
+.checkout{
+  margin-top: 15px;
+  padding: 20px;
+  border: none;
+  background-color: #263e3e;
+  color: white;
+  width: 440px;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.model.Product;
 import in.fssa.missnature.service.ProductService;
 
@@ -29,7 +30,7 @@ public class DeleteProduct extends HttpServlet {
 			ps.deleteProduct(id);
 			response.sendRedirect(request.getContextPath() +"/list_all_products");
 		}
-		catch(Exception e) {
+		catch(ServiceException e) {
 			 e.printStackTrace();
 		}
 	}

@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.model.Product;
+import in.fssa.missnature.model.Product.ProductType;
 import in.fssa.missnature.model.Product.QuantityUnit;
+import in.fssa.missnature.model.Product.SkinType;
 import in.fssa.missnature.service.ProductService;
 
 /**
@@ -31,9 +34,12 @@ public class CreateProduct extends HttpServlet {
 		String ingredients = request.getParameter("Ingredients");
 		String benefits = request.getParameter("Benefits");
 		String howToUse = request.getParameter("Howtouse");
+		String image = request.getParameter("image");
 		int weight = Integer.parseInt(request.getParameter("weight"));
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		int price = Integer.parseInt(request.getParameter("price"));
+		String skinType = request.getParameter("skinType");
+		String productType = request.getParameter("productType");
 		String quantityUnit = request.getParameter("quantityUnit");
 		String shelfLife = request.getParameter("ShelfLife");
 		
@@ -45,6 +51,9 @@ public class CreateProduct extends HttpServlet {
 		product.setCategoryId(categoryId);
 		product.setQuantityUnit(QuantityUnit.valueOf(quantityUnit));
 		product.setPrice(price);
+		product.setImage(image);
+		product.setSkinType(SkinType.valueOf(skinType));
+		product.setProductType(ProductType.valueOf(productType));
 		product.setBenefits(benefits);
 		product.setShelfLife(shelfLife);
 		
@@ -52,8 +61,8 @@ public class CreateProduct extends HttpServlet {
 
 			try {
 				prodService.createProduct(product);
-				response.sendRedirect(request.getContextPath()+"/list_all_products");
-			} catch (Exception e) {
+				response.sendRedirect(request.getContextPath()+"/list_all_products.jsp");
+			} catch (ServiceException e) {
 				e.printStackTrace();
 			}
 	}
