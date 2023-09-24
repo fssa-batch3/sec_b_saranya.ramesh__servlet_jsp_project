@@ -5,12 +5,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
+<link rel="stylesheet" href="./assets/css/header.css"/>
 <style type="text/css">
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Alkatra', cursive;
+   
 }
 
 .container{
@@ -18,6 +19,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    font-family: 'Alkatra', cursive;
 }
 .container-form{
     width: 50%;
@@ -128,7 +130,7 @@ input[type=checkbox] {
 a {
     color:#143939;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 22px;
 }
 
 a:hover {
@@ -151,31 +153,41 @@ a:hover {
     text-align: center;
     padding: 20px 0;
 }
+
+
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css">
 <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
 </head>
 <body>
+
+<jsp:include page="header.jsp" />
 		<!--  Below the code for show the error -->
 	<%
 	String error = (String) request.getAttribute("errorMessage");
 	if (error != null && !("".equals(error))) {
 	%>
 	<script>
-		Notify.error(
-		`<%=error%>
-		`);
-	</script>
-	<%
+  Notify.error(
+    `<%=error%>`
+  );
+
+  
+  setTimeout(function() {
+    Notify.closeAll(); 
+  }, 100000); 
+</script>
+	<%-- <%
 	} else {
 	%>
 	<script>
         Notify.error("please fill the details");
     </script>
+	 --%>
 	<%
 	}
 	%>
-
+	
 <div class="container">
         <div class="container-form">
         <form action="Create" method="post" class="sign-form" id="sign-form" autocomplete="on">
@@ -183,7 +195,7 @@ a:hover {
             <p class="form-caption">See your growth and get consulting support!</p>
 
             <label for="username">Name <span class="star-required">*</span></label>
-            <input type="text" name="name" id="username" placeholder="Name" pattern="[a-zA-Z]+" autofocus required>
+            <input type="text" name="name" id="username" placeholder="Name" pattern="[a-zA-Z ]+" autofocus required>
 
             <label for="email">Email<span class="star-required">*</span></label>
             <input type="email" name="email" id="email" placeholder="mail@website.com" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" required>
@@ -192,14 +204,12 @@ a:hover {
             <input type="tel" name="phone_number" id="mobileNumber" placeholder="1234567898"  required>
 
             <label for="password">Password<span class="star-required">*</span></label>
-            <input type="password" name="password" id="password" placeholder="Min. 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+            <input type="password" name="password" title="include one digit, One UpperCase, One LowerCase" id="password" placeholder="Min. 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
            
             <label for="cfm-password">Confirm Password<span class="star-required">*</span></label>
             <input type="password" name="cfm-password" id="conformPassword" placeholder="Min. 8 character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
             <br>
-
             
-
             <button type="submit" id="submit">Sign Up</button>
         </form>
         <p class="have-account-line">Already have an Account?<a href="<%=request.getContextPath()%>/sign_in.jsp">Sign in</a></p>

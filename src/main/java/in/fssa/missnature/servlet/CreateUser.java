@@ -52,8 +52,6 @@ public class CreateUser extends HttpServlet {
 			}
 			user.setMobileNumber(Long.parseLong(request.getParameter("phone_number")));
 
-			Logger.info(user.toString());
-
 			UserService userService = new UserService();
 			userService.createUser(user);
 			response.sendRedirect(request.getContextPath() + "/sign_in.jsp");

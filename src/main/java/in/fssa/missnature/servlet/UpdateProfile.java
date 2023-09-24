@@ -18,14 +18,16 @@ import in.fssa.missnature.service.UserService;
 /**
  * Servlet implementation class EditProfile
  */
-@WebServlet("/update_profile")
+@WebServlet("/updateProfile")
 public class UpdateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
@@ -42,15 +44,16 @@ public class UpdateProfile extends HttpServlet {
 		user.setState(state);
 		user.setPincode(pincode);
 		user.setEmail(email);
-		
+		Logger.info(user);	
+
 		UserService us = new UserService();
 		try {
 			us.updateUser(user);
-//			response.sendRedirect(request.getContextPath()+"/profile.jsp");
 			response.sendRedirect(request.getContextPath()+"/profile");
-			
-		}
-		catch(ServiceException e) {
+//			RequestDispatcher rd = request.getRequestDispatcher("/profile");
+//			rd.forward(request, response);
+
+		} catch (ServiceException e) {
 			e.printStackTrace();
 			Logger.info(e.getMessage());
 		}

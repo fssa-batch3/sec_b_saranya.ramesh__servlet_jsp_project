@@ -23,23 +23,23 @@ public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
-		 User userDetail = (User) session.getAttribute("loggedInEmail");
-		 
-		 try {
-			 
-			 request.setAttribute("userDetail", userDetail);
-			 RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/edit_profile.jsp");
-			 rd.forward(request, response);
-		 }
-		catch(IllegalArgumentException e) {
+		User userDetail = (User) session.getAttribute("loggedInEmail");
+		
+		try { 
+			User userDetails = new UserService().findUserByEmail(userDetail.getEmail());
+			request.setAttribute("userDetails", userDetails);
+			RequestDispatcher rd = request.getRequestDispatcher("/edit_profile.jsp");
+			rd.forward(request, response);
+		} catch (IllegalArgumentException | ServiceException | ValidationException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 }

@@ -1,3 +1,4 @@
+<%@page import="in.fssa.missnature.model.User"%>
 <%@page import="java.util.Set"%>
 <%@page import="in.fssa.missnature.service.ProductService"%>
 <%@page import="in.fssa.missnature.model.Product"%>
@@ -12,6 +13,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Dancing+Script:wght@400;600&family=Poppins:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
 <link rel="stylesheet" href="../assets/css/product_detail.css"/> 
 <link rel="stylesheet" href="../assets/css/header.css"/> 
 <title>Product Detail</title>
@@ -22,7 +24,9 @@
 <%
 Product productDetail = (Product) request.getAttribute("product");
 %>
-
+<%
+int id = (int)request.getAttribute("userId");
+%>
 <jsp:include page="header.jsp" />
  <section class="main-img">
 <div class="seperate">
@@ -32,7 +36,7 @@ Product productDetail = (Product) request.getAttribute("product");
             <a href="#"><i class="Wishlist far fa-heart" style='font-size:36px; color:#263e3e'></i></a>
             <div class="prodDetail">
                 <h2> <%=productDetail.getName()%></h2>
-                <p class="amt"> <b><%=productDetail.getPrice()%></b> </p>
+                <p class="amt"> <b>&#8377; <%=productDetail.getPrice()%></b> </p>
                 <div>
                     <h3>Description</h3>
                         <div class="container">
@@ -41,8 +45,8 @@ Product productDetail = (Product) request.getAttribute("product");
                 </div>
                 <h3 class="quantity">Weight - <%=productDetail.getWeight()%><%=productDetail.getQuantityUnit()%></h3>
                 
-              <a href="add_to_cart?id=<%=productDetail.getId()%>"><button class="add-to-cart">Add to cart</button></a>
-              <a href="address?id=<%=productDetail.getId()%>"><button class="add-to-cart">Buy Now</button></a>    
+              <button type="submit" id="add-to-cart" data-prodId="<%=productDetail.getId()%>">Add To Cart</button>
+              <a href="address?id=<%=productDetail.getId()%>"><button type="submit" class="add-to-cart">Buy Now</button></a>    
             </div>
         </div>
     </section>
@@ -131,6 +135,9 @@ Product productDetail = (Product) request.getAttribute("product");
     </footer>
     
     <script type="text/javascript">
+    
+    //Below the code for accordion
+    
     const acc = document.getElementsByClassName("accordion");
     let i;
 
@@ -147,6 +154,57 @@ Product productDetail = (Product) request.getAttribute("product");
         });
     }
     
+    // Below the  code for add to cart
+    
+    document.getElementById("add-to-cart").addEventListener("click", cart);
+
+        
+        function cart() {
+        	
+        	let productId;
+            productId =  document.querySelector("button.prodId");
+   
+			let userunique = <%=id%>;
+			
+        if(userunique>0){
+        
+            const cart = JSON.parse(localStorage.getItem("Cart")) || [];
+
+            const alreadyexist = cart.length && JSON.parse(localStorage.getItem("Cart")).some((e) =>
+                e.ProdId == productId &&
+                e.userId == userunique
+            );
+
+            if (!alreadyexist) {
+            	
+            	let image = '<%=productDetail.getImage()%>';
+            	let name= '<%=productDetail.getName()%>';
+            	let weight= '<%=productDetail.getWeight()%>';
+            	let quantityUnit = '<%=productDetail.getQuantityUnit()%>';
+            	
+                cart.push({
+                	"ProdId": <%=productDetail.getId()%>,
+                    "userId": userunique,
+                    "Price": <%=productDetail.getPrice()%>,
+                    "Quantity": 1,
+                    "Image" : image,
+                    "Name": name,
+                    "Weight" : <%=productDetail.getWeight()%>,
+                    "QuantityUnit" : quantityUnit,
+                    
+                    
+                })
+
+                localStorage.setItem("Cart", JSON.stringify(cart));
+            }
+            console.log("Before redirection");
+            window.location.href = "<%= request.getContextPath() +"/add_to_cart.jsp"%>";
+            console.log("After redirection");
+        }
+        else{
+            alert("SignUp before add to cart");
+        }
+     }
     </script>
     
 </body>

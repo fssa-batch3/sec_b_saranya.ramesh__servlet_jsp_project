@@ -71,13 +71,7 @@
                     <p><%=products.getName()%> - <%=products.getWeight()%><%=products.getQuantityUnit()%> </p>
                 </a>
                 
-                <div class="icons">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
+                
                 <h3> &#8377 <%=products.getPrice()%></h3>
                 <a href="product/detail?id=<%=products.getId()%>"><button>View Details</button></a>
             </div>
@@ -125,13 +119,7 @@
                 <a href="">
                     <p><%=products.getName()%> - <%=products.getWeight()%><%=products.getQuantityUnit()%></p>
                 </a>
-                <div class="icons">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
+                
                 <h3>&#8377
                 <%=products.getPrice()%>
                 </h3>

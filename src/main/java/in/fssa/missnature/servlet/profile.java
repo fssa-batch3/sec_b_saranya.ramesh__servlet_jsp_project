@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.exception.ValidationException;
+import in.fssa.missnature.logger.Logger;
 import in.fssa.missnature.model.User;
 import in.fssa.missnature.service.UserService;
 
@@ -26,17 +27,19 @@ public class profile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		 HttpSession session = request.getSession();
 		 User userDetail = (User) session.getAttribute("loggedInEmail");
-		 
+		 Logger.info(userDetail); // This will only return the email
 		 try {
-			
-			 request.setAttribute("userDetail", userDetail);
-			 RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/profile.jsp");
+			User userDetails = new UserService().findUserByEmail(userDetail.getEmail());
+			Logger.info(userDetails);
+			 request.setAttribute("userDetails", userDetails);
+			 RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
 			 rd.forward(request, response);
+			 doPost(request, response);
 		 }
-		catch(IllegalArgumentException e) {
+		catch(IllegalArgumentException | ServiceException | ValidationException e) {
 			e.printStackTrace();
 		}
 	}

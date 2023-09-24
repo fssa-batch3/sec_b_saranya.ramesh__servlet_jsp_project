@@ -35,7 +35,6 @@ public class index extends HttpServlet {
 			request.setAttribute("allProducts", product);
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp"); 
 			rd.forward(request, response);
-//			Logger.info(loggedInEmail);
 			
 		}
 		catch(ServiceException e) {

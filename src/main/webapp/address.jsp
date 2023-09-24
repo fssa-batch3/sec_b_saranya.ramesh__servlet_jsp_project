@@ -156,78 +156,26 @@ input {
 .hr {
 	margin-top: 10px;
 }
-
-.popup {
-	width: 400px;
-	background: #fff;
-	border-radius: 6px;
-	position: absolute;
-	top: 0;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(0.1);
-	text-align: center;
-	padding: 0px 30px 30px;
-	color: #333;
-	visibility: hidden;
-	transition: transform 0.4s, top 0.4s;
-}
-
-.open-popup {
-	visibility: visible;
-	top: 50%;
-	transform: translate(-50%, -50%) scale(1);
-}
-
-.popup img {
-	width: 100px;
-	margin-top: -50px;
-	border-radius: 50%;
-	box-shadow: 0 2px 5px(0 0 0 0.2px);
-}
-
-.popup h2 {
-	font-size: 38px;
-	font-weight: 500;
-	margin: 30px 0px 10px;
-}
-
-.popup p {
-	margin-top: 15px;
-	font-family: 'Poppins', sans-serif;
-}
-
-.popup button {
-	width: 100%;
-	margin-top: 40px;
-	padding: 10px 0;
-	background: #04AA6D;
-	color: #fff;
-	border: 0;
-	outline: none;
-	font-size: 18px;
-	border-radius: 4px;
-	cursor: pointer;
-	box-shadow: 0 5px 5px(0 0 0 0.2px);
-}
 </style>
 <body>
 
 	<jsp:include page="header.jsp" />
 
-	<%
+<%
 Product productDetail = (Product) request.getAttribute("productdetail");
-System.out.println("Product in JSP: " + productDetail);
 %>
-	<% User user = (User) session.getAttribute("loggedInEmail");%>
+<% User user = (User) session.getAttribute("loggedInEmail");%>
 
 	<form action="<%=request.getContextPath()%>/product/order"
 		method="post">
 
-		<input type="hidden" name="productId"
-			value="<%=productDetail.getId()%>" /> <input type="hidden"
-			name="prodName" value="<%=productDetail.getName()%>" /> <input
-			type="hidden" name="price" value="<%=productDetail.getPrice()%>" />
-
+		<input type="hidden" name="productId" value="<%=productDetail.getId()%>" /> 
+		<input type="hidden" name="prodName" value="<%=productDetail.getName()%>" /> 
+		<input type="hidden" name="price" value="<%=productDetail.getPrice()%>" />
+		<input type="hidden" name="weight" value="<%=productDetail.getWeight()%>"/>
+		<input type="hidden" name="quantityunit" value ="<%=productDetail.getQuantityUnit()%>"/>
+		<input type="hidden" name="image" value="<%=productDetail.getImage()%>"/>
+		
 		<div class="checkout">
 			<div class="body">
 				<h1 class="checkout">Checkout</h1>
@@ -248,7 +196,7 @@ System.out.println("Product in JSP: " + productDetail);
 				</div>
 				<div class="field">
 					<label>Address*</label><br>
-					<textarea rows="5" cols="66" name="deliveryAddress"><%= user.getAddress()%></textarea>
+					<textarea rows="5" cols="66" name="deliveryAddress" required><%= user.getAddress() != null ? user.getAddress() : ""%></textarea>
 				</div>
 
 				<h3 class="payment_details">Payment Details</h3>
@@ -302,14 +250,13 @@ System.out.println("Product in JSP: " + productDetail);
 					</div>
 					<div class="qty-price">
 						<div class="quantity">
-							<label>Qty</label> <input name="quantity" id="qty" type="number"
-								value="1" min="1" max="10" required="true" />
+						    <label>Qty</label>
+						    <input name="quantity" id="qty" type="number" value="1" min="1" max="10" required="true" oninput="updateTotalAmount()" />
 						</div>
 
+
 						<div class="price">
-							<p>
-								&#8377;
-								<%=productDetail.getPrice()%></p>
+							<p>&#8377;<%=productDetail.getPrice()%></p>
 						</div>
 					</div>
 				</div>
@@ -320,35 +267,37 @@ System.out.println("Product in JSP: " + productDetail);
 				</div>
 
 				<div class="order">
-					<p>Total</p>
-					<p>
-						&#8377;<%=productDetail.getPrice()+70%>
-					</p>
+				    <p>Total</p>
+				    <p id="totalAmount">&#8377;<%= productDetail.getPrice() + 70 %></p>
 				</div>
-				<button type="submit" id="order_button" onclick="openpopup()">Place Order</button>
+
+				<button type="submit" id="order_button">Place Order</button>
 			</div>
 		</div>
 	</form>
-	<div class="container2">
+<script type="text/javascript">
+function updateTotalAmount() {
+    const inputElement = document.getElementById("qty");
+    let quantity = parseInt(inputElement.value);
 
-		<div class="popup" id="popup">
-			<img src="/assets/img/404-tick.png">
-			<h3>Thank you!</h3>
-			<p>Successfully orederd. Thank You for ordering in our website!!</p>
-			<a href="/pages/my_order.html"><button type="button"
-					onclick="closepopup()">View your order</button></a>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-    let popup = document.getElementById("popup");
-
-    function openpopup() {
-      popup.classList.add("open-popup");
+    // Check if quantity is a valid integer
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1; // Set a default value of 1 if not a valid integer
+    } else if (quantity > 10) {
+        quantity = 10;
     }
-    function closepopup() {
-      popup.classList.remove("open-popup");
-    }
+
+    inputElement.value = quantity;
+
+    const productPrice = <%= productDetail.getPrice() %>;
+
+    // Calculate the total amount
+    const totalAmount = quantity * productPrice + 70;
+    
+    document.getElementById("totalAmount").innerHTML = "&#8377;" + totalAmount;
+}
+
 </script>
+
 </body>
 </html>

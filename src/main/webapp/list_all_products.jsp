@@ -57,9 +57,9 @@
 	<%
 	Set<Product> listProducts = productList.listAllProduct();
 	%>
-	
-<a href="product/new"><button>Create product</button></a>
 
+<a href="product/new"><button>Create product</button></a>
+<a href="order_list"><button>View Orders</button></a>
 	<table border=1>
 		<tr>
 			<th>Id</th>

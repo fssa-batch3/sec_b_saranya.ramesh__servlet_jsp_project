@@ -29,22 +29,32 @@ public class SignIn extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
+		if(email.equals("admin@gmail.com")&& password.equals("Admin@123")) {
+			response.sendRedirect(request.getContextPath()+"/list_all_products");
+		}
+		else {
 		UserService us = new UserService();
-		UserDAO userDAO = new UserDAO();
 		User user;
 		try {
-			user = us.findUserByEmail(email); 
+			user =  us.loginUser(email);
+			Logger.info(user);
+			String pwd = user.getPassword(); 
+			
+			if(!password.equals(pwd)) {
+				throw new ValidationException("Invalid credentials");
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("loggedInEmail", user);
-			Logger.info("Success");
-			Logger.info(user);
-			userDAO.userLogin(email, password);
+		
 			response.sendRedirect(request.getContextPath()+"/index");
 		}
-		catch(PersistanceException | IOException | SQLException | ServiceException | ValidationException e) {
+		catch(IOException | ServiceException | ValidationException e) {
 			String errorMessage = e.getMessage();
 			request.setAttribute("errorMessage", errorMessage); 
 			request.getRequestDispatcher("sign_in.jsp").forward(request, response);
 		}
+	}
 	}
 }
