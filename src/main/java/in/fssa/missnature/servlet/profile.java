@@ -30,14 +30,14 @@ public class profile extends HttpServlet {
 		
 		 HttpSession session = request.getSession();
 		 User userDetail = (User) session.getAttribute("loggedInEmail");
-		 Logger.info(userDetail); // This will only return the email
+		 Logger.info(userDetail); 
+		 UserService us = new UserService();
 		 try {
-			User userDetails = new UserService().findUserByEmail(userDetail.getEmail());
-			Logger.info(userDetails);
-			 request.setAttribute("userDetails", userDetails);
+			 User userDetails = us.findUserByEmail(userDetail.getEmail());
+			 request.setAttribute("user", userDetails);
 			 RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
 			 rd.forward(request, response);
-			 doPost(request, response);
+			 
 		 }
 		catch(IllegalArgumentException | ServiceException | ValidationException e) {
 			e.printStackTrace();

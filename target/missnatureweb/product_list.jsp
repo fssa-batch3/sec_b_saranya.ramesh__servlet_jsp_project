@@ -12,7 +12,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Product List</title>
 <link rel="stylesheet" href="../assets/css/product_list.css"/>
-<link rel="stylesheet" href="../assets/css/header.css"/>  
+<link rel="stylesheet" href="./assets/css/header.css"/>  
+<link rel="stylesheet" href="../assets/css/footer.css"/>  
 </head>
 <body>
 	<%
@@ -36,13 +37,7 @@
                 <a href="">
                     <p><%=products.getName()%></p>
                 </a>
-                <div class="icons">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
+               
                 <h3>&#8377
                    <%=products.getPrice()%>
                 </h3>
@@ -52,5 +47,7 @@
 		}
 		%>
 		</section>
+		
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

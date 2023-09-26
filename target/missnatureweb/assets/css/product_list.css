@@ -194,3 +194,36 @@ button{
     margin-top: 70px;
     margin-bottom: 40px;
 }
+
+hr.bottom-line {
+	width: 46%;
+	color: orange;
+}
+
+.drpdown {
+	padding: 20px 18px 20px;
+	display: none;
+	background-color: white;
+	/* overflow: hidden; */
+	max-width: 550px;
+}
+
+.arrow_down {
+	border: solid rgb(87, 84, 84);
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+	margin-right: 10px;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+}
+
+.description {
+	margin: 0px 0px 90px 150px;
+}
+
+.row {
+	display: flex;
+	margin-top: 70px;
+	margin-bottom: 40px;
+}

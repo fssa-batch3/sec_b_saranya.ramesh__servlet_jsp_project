@@ -35,7 +35,6 @@ public class UpdateProfile extends HttpServlet {
 		String city = request.getParameter("city");
 		String pincode = request.getParameter("pincode");
 		String state = request.getParameter("state");
-		Logger.info(email);
 		User user = new User();
 
 		user.setName(name);
@@ -44,7 +43,8 @@ public class UpdateProfile extends HttpServlet {
 		user.setState(state);
 		user.setPincode(pincode);
 		user.setEmail(email);
-		Logger.info(user);	
+		Logger.info("user Details"); 
+		Logger.info(user); 
 
 		UserService us = new UserService();
 		try {

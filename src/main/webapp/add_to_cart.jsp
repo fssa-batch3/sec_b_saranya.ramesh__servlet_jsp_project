@@ -39,6 +39,7 @@
 					<th>Products</th>
 					<th>Weight</th>
 					<th>Price</th>
+					<th>Quantity</th>
 					<th>Subtotal</th>
 					<th>Remove</th>
 				</tr>
@@ -62,21 +63,21 @@ let cart_id = JSON.parse(localStorage.getItem("Cart"));
 console.log(cart_id);
 
 for (let i = 0; i < cart_id.length; i++) {
-  const cartprod = `
-    <tr>
-      <td>${ i+ 1}.</td>
-      <td><img src="${cart_id[i].Image}" width="150px" height="130px" alt="${cart_id[i].Name}"></td>
-      <td>${cart_id[i].Name} - ${cart_id[i].Weight} ${cart_id[i].QuantityUnit}</td>
-      <td>&#8377; ${cart_id[i].Price}</td>
-      <td id="totalPrice">&#8377; ${cart_id[i].Price}</td>
-      <td><i class="remove fa fa-times-circle" data-remove_id="${cart_id[i].cartId}" style="font-size:24px"></i></td>
-    </tr>
-  `;
+  const cartprod = ""+
+  "<tr>" +
+  "<td>" + (i + 1) + ".</td>" +
+  "<td><img src='" + cart_id[i].Image + "' width='150px' height='130px' alt='" + cart_id[i].Name + "'></td>" +
+  "<td>" + cart_id[i].Name + " - " + cart_id[i].Weight + cart_id[i].QuantityUnit + "</td>" +
+  "<td>" + cart_id[i].Price + "</td>" +
+  "<td>" + cart_id[i].Quantity + "</td>" +
+  "<td>" + cart_id[i].Price + "</td>" +
+  "<td><i class='remove fa fa-times-circle' data-remove_id='" + cart_id[i].cartId + "' style='font-size:24px'></i></td>" +
+"</tr>"
+
+;
+  console.log(cartprod);
   document.querySelector("#table_body").insertAdjacentHTML("afterbegin", cartprod);
 }
-
-
-
 
  // below the code for delete from add to cart
 

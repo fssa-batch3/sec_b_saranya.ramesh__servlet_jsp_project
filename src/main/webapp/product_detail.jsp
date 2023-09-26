@@ -24,9 +24,9 @@
 <%
 Product productDetail = (Product) request.getAttribute("product");
 %>
-<%
+<%-- <%
 int id = (int)request.getAttribute("userId");
-%>
+%> --%>
 <jsp:include page="header.jsp" />
  <section class="main-img">
 <div class="seperate">
@@ -45,7 +45,7 @@ int id = (int)request.getAttribute("userId");
                 </div>
                 <h3 class="quantity">Weight - <%=productDetail.getWeight()%><%=productDetail.getQuantityUnit()%></h3>
                 
-              <button type="submit" id="add-to-cart" data-prodId="<%=productDetail.getId()%>">Add To Cart</button>
+              <%-- <button type="submit" id="add-to-cart" data-prodId="<%=productDetail.getId()%>">Add To Cart</button> --%>
               <a href="address?id=<%=productDetail.getId()%>"><button type="submit" class="add-to-cart">Buy Now</button></a>    
             </div>
         </div>
@@ -154,17 +154,23 @@ int id = (int)request.getAttribute("userId");
         });
     }
     
-    // Below the  code for add to cart
     
+    
+   // Below the  code for add to cart
+    <%-- 
     document.getElementById("add-to-cart").addEventListener("click", cart);
 
         
         function cart() {
         	
+        	<% HttpSession httpSession = request.getSession(false); User sessionCheck =
+        		(User) httpSession.getAttribute("loggedInEmail");%>
+        		
+        	
         	let productId;
             productId =  document.querySelector("button.prodId");
    
-			let userunique = <%=id%>;
+            let userunique = <%=sessionCheck.getId()%>
 			
         if(userunique>0){
         
@@ -204,7 +210,7 @@ int id = (int)request.getAttribute("userId");
         else{
             alert("SignUp before add to cart");
         }
-     }
+     } --%>
     </script>
     
 </body>

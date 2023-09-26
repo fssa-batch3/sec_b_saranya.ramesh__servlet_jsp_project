@@ -6,18 +6,13 @@
 <meta charset="ISO-8859-1">
 <title>Create Product</title>
 <style type="text/css">
-<style type="text/css">
 body, h2, form, label, input, select, button {
-    margin: 0;
+        margin: 0;
     padding: 0;
-    border: none;
+    /* border: none; */
+    padding: 10px;
     outline: none;
     font-family: Arial, sans-serif;
-}
-/* Set background color and add some spacing */
-body {
-    background-color: #f2f2f2;
-    padding: 20px;
 }
 
 /* Style the container */
@@ -27,7 +22,7 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     max-width: 600px;
-    margin: 0 auto;
+   	margin: 100px 400px;
 }
 
 /* Style the form */
@@ -77,6 +72,7 @@ input[type="hidden"] {
 </style>
 </head>
 <body>
+<jsp:include page="admin_header.jsp" />
 <div class="container">
 	<form action = "create" method = "post" >
 <h2> Create Product </h2>
@@ -137,7 +133,7 @@ input[type="hidden"] {
 		</select>
 		
 		<button type="submit">Submit</button>
-		
+				
 	</form>
 	</div>
 </body>

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
 <title>Profile</title>
@@ -17,7 +17,7 @@
 </head>
 <body>
 <% 
-    User user = (User) request.getAttribute("userDetails");
+    User user = (User) request.getAttribute("user");
     if (user != null) {
 %>
 
@@ -25,7 +25,7 @@
 <section class="body">
     <div class="top">
         <div>
-            <img class="pro_img" src="https://meganathan2003.github.io/dinesh-compelete-webpage/images/user-1.png">
+            <img class="pro_img" src="./assets/images/profile.jpg">
         </div>
         <div class="user_name">
             <h3><%= user.getName() %></h3>
@@ -54,31 +54,31 @@
         <div class="form">
             <div>
                 <label> Name</label>
-                <input type="text" id="name" name="name" value="<%= user.getName() != null ? user.getName() : "" %>" disabled/>
+                <input type="text" id="name" name="name" value="<%= user.getName() != null ? user.getName() : "" %>" readonly="readonly"/>
             </div>
             <div>
                 <label>Email</label>
-                <input type="text" id="email" name="email" value="<%= user.getEmail() != null ? user.getEmail() : "" %>" disabled/>
+                <input type="text" id="email" name="email" value="<%= user.getEmail() != null ? user.getEmail() : "" %>" readonly="readonly"/>
             </div>
             <div>
                 <label> Mobile Number</label>
-                <input type="tel" id="number" name="mobileNumber" value="<%= user.getMobileNumber() != 0 ? user.getMobileNumber() : "" %>" disabled/>
+                <input type="tel" id="number" name="mobileNumber" value="<%= user.getMobileNumber() != 0 ? user.getMobileNumber() : "" %>"readonly="readonly"/>
             </div>
             <div>
                 <label for="address">Address</label>
-                <input type="text" id="Address" name="address" value="<%= user.getAddress() != null ? user.getAddress() : "" %>" disabled>
+                <input type="text" id="Address" name="address" value="<%= user.getAddress() != null ? user.getAddress() : "" %>"readonly="readonly">
             </div>
             <div>
                 <label for="state">State:</label>
-                <input type="text" id="State" name="state" value="<%= user.getState() != null ? user.getState() : "" %>" disabled>
+                <input type="text" id="State" name="state" value="<%= user.getState() != null ? user.getState() : "" %>" readonly="readonly">
             </div>
             <div>
                 <label for="city">City</label>
-                <input type="text" id="City" name="city" value="<%= user.getCity() != null ? user.getCity() : "" %>" disabled>
+                <input type="text" id="City" name="city" value="<%= user.getCity() != null ? user.getCity() : "" %>" readonly="readonly">
             </div>
             <div>
                 <label>Pincode</label>
-                <input type="text" id="pincode" name="pincode" value="<%= user.getPincode() != null ? user.getPincode() : "" %>" disabled>
+                <input type="text" id="pincode" name="pincode" value="<%= user.getPincode() != null ? user.getPincode() : "" %>" readonly="readonly">
             </div>
         
             <a href="edit_profile?email=<%=user.getEmail()%>"><button id="edit">Edit</button></a>

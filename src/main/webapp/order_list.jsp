@@ -1,87 +1,95 @@
-<%@page import="java.lang.System.Logger"%>
+<%@page import="java.util.List"%>
+<%@page import="in.fssa.missnature.logger.Logger"%>
 <%@page import="in.fssa.missnature.model.Orders"%>
 <%@page import="java.util.Set"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Order List</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/header.css">
 <style>
-   table {
-    border-collapse: collapse;
-    width: 100%;
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
   }
 
-  th, td {
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .order {
     border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
   }
 
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
+  .order img {
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
   }
 
-  th {
-    background-color: #4CAF50;
-    color: white;
+  .order-details {
+    flex: 1;
   }
 
-  td a {
-    text-decoration: none;
+  .order-details h3 {
+    margin: 0;
   }
 
-  button {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  .order-details p {
+    margin: 5px 0;
   }
 
-  button:hover {
-    background-color: #005F7D;
-  }
-  .image{
-  width : 200px;
+  .order-price {
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
-	<%
-	Set<Orders> orderList = (Set<Orders>) request.getAttribute("orders");
-	%>
-	
-	<table border=1>
-		<tr>
-			<th>Id</th>
-			<th>UserId</th>
-			<th>Product Name</th>
-			<th>Product Image</th>
-			<th>Quantity</th>
-			<th>Address</th>
-			<th>Price</th>
-			
-		</tr>
-		
-		<%
-		for(Orders orders : orderList){
-		%>
-		<tr>
-			<td><%=orders.getId()%></td>
-			<td><%=orders.getUserId()%></td>
-			<td><%=orders.getProductName()%></td>
-			<td><image class="image" src="<%=orders.getProductImage()%>"/></td>
-			<td><%=orders.getQuantity()%></td>
-			<td><%=orders.getAddress()%></td>
-			<td><%=orders.getPrice()%></td>
-		</tr>
-		<%
-		}
-		%>
-		
-	</table>
+<jsp:include page="admin_header.jsp" />
+  
+  <div class="container">
+    <%
+    List<Orders> orderList = (List<Orders>) request.getAttribute("orders");
+      for(Orders orders : orderList) {
+    %>
+    	<%boolean isActive =  orders.isActive();%>
+    	<%Logger.info(isActive); %>
+    
+    <div class="order">
+      <img src="<%= orders.getProductImage() %>" alt="<%= orders.getProductName() %>">
+      <div class="order-details">
+        <h3><%= orders.getProductName() %></h3>
+        <p>Product ID: <%= orders.getId() %></p>
+        <p>Quantity: <%= orders.getQuantity() %></p>
+        <p>Address: <%= orders.getAddress() %></p>
+        <p>User ID: <%= orders.getUserId() %></p>
+      </div>
+      
+      <div class="order-price">
+      <%if(isActive == true) {%>
+      <p style="display:none;">Order cancelled</p>
+        Price: <%= orders.getPrice() %>
+        <%} else {%>
+        <p>Order cancelled</p>
+        Price: <%= orders.getPrice() %>
+        <%} %>
+      </div>
+    
+    </div>
+    <%
+      }
+    %>
+  </div>
 </body>
 </html>

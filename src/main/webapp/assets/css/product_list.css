@@ -227,3 +227,59 @@ hr.bottom-line {
 	margin-top: 70px;
 	margin-bottom: 40px;
 }
+
+/* Style for the filter section */
+.filter {
+  background-color: #f2f2f2;
+  padding: 20px 0; /* Adjust the padding as needed */
+  text-align: center;
+}
+
+/* Style for the wrapper div inside the filter section */
+.filter .wrapper {
+  max-width: 600px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+/* Style for the search container div */
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+/* Style for the search input */
+#search-item {
+  border: none;
+  padding: 10px;
+  width: 80%; /* Adjust the width as needed */
+  border-radius: 5px;
+}
+
+/* Style for the search button */
+#search {
+  background-color: #007bff; /* Change to your desired button color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Hover effect for the search button */
+#search:hover {
+  background-color: #0056b3; /* Change to your desired hover color */
+}
+
+.search{
+	margin-left: 1250px;
+    margin-top: -54px;
+}
+#filter{
+	padding: 8px;
+    border-radius: 3px;
+}

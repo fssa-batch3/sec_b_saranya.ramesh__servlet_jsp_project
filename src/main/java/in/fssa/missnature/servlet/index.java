@@ -1,5 +1,6 @@
 package in.fssa.missnature.servlet;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -35,10 +36,9 @@ public class index extends HttpServlet {
 			request.setAttribute("allProducts", product);
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp"); 
 			rd.forward(request, response);
-			
 		}
-		catch(ServiceException e) {
-			e.printStackTrace();
+		catch(ServiceException e) { 
+			e.printStackTrace(); 
 		}
 	}
-}
+} 

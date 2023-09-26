@@ -1,6 +1,7 @@
 package in.fssa.missnature.servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -37,7 +38,7 @@ public class MyOrder extends HttpServlet {
 		OrderService orderService = new OrderService();
 		
 		try {
-			Set<Orders> myOrder = orderService.listOrdersById(user.getId());
+			List<Orders> myOrder = orderService.listOrdersById(user.getId());
 			Logger.info(myOrder);
 			request.setAttribute("myOrder", myOrder);
 			RequestDispatcher rd = request.getRequestDispatcher("/order.jsp"); 

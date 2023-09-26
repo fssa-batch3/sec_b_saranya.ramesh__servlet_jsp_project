@@ -26,7 +26,7 @@ if (isLogin_in == false) {
         </li>
         </li>
         <li><a href=""> Contact us</a></li>
-        <li><a href="">About us</a> </li>
+        <li><a href="<%=request.getContextPath()%>/about_us.jsp">About us</a> </li>
         <a href="<%=request.getContextPath()%>/sign_up.jsp"><button id="button">Sign Up</button></a> 
     </ul>
 </div>
@@ -55,8 +55,9 @@ if (isLogin_in == false) {
         </li>      
         </li>
         <li><a href="<%=request.getContextPath()%>/contact_us.jsp"> Contact us</a></li>
-        <li><a href="">About us</a> </li>
+        <li><a href="<%=request.getContextPath()%>/about_us.jsp">About us</a> </li>
         <li><a href="<%=request.getContextPath()%>/profile"><i class="fa-solid fa-user"></i></a></li>
+        <li><a href="<%=request.getContextPath()%>/order/list"><i class="fa fa-shopping-bag" style="font-size:33px;"></i></a></li>
         <a href="<%=request.getContextPath()%>/logout" ><button id="logout" type="submit">Logout</button></a>
     </ul>
 </div>

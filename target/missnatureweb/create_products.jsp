@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../assets/css/header.css"/> 
 <title>Create Product</title>
 <style type="text/css">
 <style type="text/css">
@@ -14,11 +15,6 @@ body, h2, form, label, input, select, button {
     outline: none;
     font-family: Arial, sans-serif;
 }
-/* Set background color and add some spacing */
-body {
-    background-color: #f2f2f2;
-    padding: 20px;
-}
 
 /* Style the container */
 .container {
@@ -27,7 +23,7 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     max-width: 600px;
-    margin: 0 auto;
+   	margin: 100px 400px;
 }
 
 /* Style the form */
@@ -77,6 +73,7 @@ input[type="hidden"] {
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp" />
 <div class="container">
 	<form action = "create" method = "post" >
 <h2> Create Product </h2>

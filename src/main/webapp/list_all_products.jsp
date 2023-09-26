@@ -1,109 +1,128 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="in.fssa.missnature.service.ProductService"%>
 <%@page import="in.fssa.missnature.model.Product"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>List Of Products</title>
-<style>
-   table {
-    border-collapse: collapse;
-    width: 100%;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Of Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-  th, td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-  }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
 
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+        .container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+        }
 
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
 
-  td a {
-    text-decoration: none;
-  }
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            width:280px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
 
-  button {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
 
-  button:hover {
-    background-color: #005F7D;
-  }
-  .image{
-  width : 200px;
-  }
-</style>
+        .product-image {
+                width: 250px;
+			    height: 300px;
+			    max-height: 200px;
+			    object-fit: cover;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            font-size: 14px;
+            margin-bottom: 10px;
+            height:130px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .product-actions button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-actions button:hover {
+            background-color: #005F7D;
+        }
+    </style>
 </head>
 <body>
-
-	<%
-	ProductService productList = new ProductService();
-	%>
-	<%
-	Set<Product> listProducts = productList.listAllProduct();
-	%>
-
-<a href="product/new"><button>Create product</button></a>
-<a href="order_list"><button>View Orders</button></a>
-	<table border=1>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Weight</th>
-			<th>Quantity Unit</th>
-			<th>Price</th>
-			<th>Image</th>
-			<th>Skin Type</th>
-			<th>Product Type</th>
-			<th>Ingredients</th>
-			<th>Benefits</th>
-			<th>How To Use</th>
-			<th>ShelfLife</th>
-			<th>CategoryId</th>
-			<th colspan="3">Actions</th>
-		</tr>
-		<%
-		for (Product products : listProducts) {
-		%>
-		<tr>
-			<td><%=products.getId()%></td>
-			<td><%=products.getName()%></td>
-			<td><%=products.getDescription()%></td>
-			<td><%=products.getWeight()%>
-			<td><%=products.getQuantityUnit()%></td>
-			<td><%=products.getPrice()%></td>
-			<td><image class="image" src="<%=products.getImage()%>"/></td>
-			<td><%=products.getSkinType()%></td>
-			<td><%=products.getProductType()%></td>
-			<td><%=products.getIngredients()%></td>
-			<td><%=products.getBenefits()%></td>
-			<td><%=products.getHowToUse()%></td>
-			<td><%=products.getShelfLife()%></td>
-			<td><%=products.getCategoryId()%></td>
-			<td><a href="product/view?id=<%=products.getId()%>"><button type="submit">View</button></a>
-			<td><a href="product/edit?id=<%=products.getId()%>"><button type="submit">Update</button></a></td>
-			<td><a href="product/delete?id=<%=products.getId()%>"><button type="submit">Delete</button></a></td>
-		</tr>
-		
-		<%
-		}
-		%>
-	</table>
+<jsp:include page="admin_header.jsp" />
+  
+    <div class="container">
+        <div class="product-list">
+            <!-- Replace the following code with dynamic product data -->
+            <%
+            ProductService productList = new ProductService();
+            Set<Product> listProducts = productList.listAllProduct();
+      
+            for (Product product : listProducts) {
+            %>
+            <div class="product-card">
+                <img class="product-image" src="<%=product.getImage()%>" alt="Product Image">
+                <h2 class="product-name"><%=product.getName()%></h2>
+                <p class="product-description"><%=product.getDescription()%></p>
+                <p class="product-price">&#8377; <%=product.getPrice()%></p>
+                <div class="product-actions">
+                <a href="product/view?id=<%=product.getId()%>"><button type="submit">View</button></a>
+                <a href="product/edit?id=<%=product.getId()%>"><button type="submit">Update</button></a>
+                <a href="product/delete?id=<%=product.getId()%>"><button type="submit">Delete</button></a>
+                </div>
+            </div>
+            <!-- Repeat the product-card for each product in the list -->
+            <%
+            }
+            %>
+        </div>
+    </div>
 </body>
 </html>

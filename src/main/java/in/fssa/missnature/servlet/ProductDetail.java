@@ -27,24 +27,19 @@ public class ProductDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 
-		HttpSession httpSession = request.getSession(false);
-		User sessionCheck = (User) httpSession.getAttribute("loggedInEmail");
-
-		if (sessionCheck == null) {
-			response.sendRedirect(request.getContextPath() + "/sign_in.jsp");
-		} else {
-			String id = request.getParameter("id");
-			int userId = sessionCheck.getId();
-			try {
-				Product productDetails = new ProductService().findProductDetailsByProductId(Integer.parseInt(id));
-				request.setAttribute("product", productDetails);
-				request.setAttribute("userId", userId);
-				RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/product_detail.jsp");
-				rd.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		String id = request.getParameter("id");
+		// int userId = sessionCheck.getId();
+		try {
+			Product productDetails = new ProductService().findProductDetailsByProductId(Integer.parseInt(id));
+			request.setAttribute("product", productDetails);
+			// request.setAttribute("userId", userId);
+			RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/product_detail.jsp");
+			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		 }
 	}
-}
+

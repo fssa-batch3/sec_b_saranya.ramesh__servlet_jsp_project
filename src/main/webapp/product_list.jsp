@@ -25,6 +25,34 @@
 	
 <jsp:include page="header.jsp" />
 
+	<section class="filter">
+	            <div class="wrapper">
+	                <div id="search-container">
+	                    <input type="search" id="search-item" placeholder="search Products here" onkeyup="search()">
+	                    <button id="search">Search</button>
+	                </div>
+	            </div>
+	
+	</section>
+<div class="search">
+	 <label for="filter">Filter by:</label>
+    <select id="filter">
+        <option value="all">All</option>
+        <option value="category1">OILY</option>
+        <option value="category2">DRY</option>
+        <option value="category3">NORMAL</option>
+        <option value="">SENSITIVE</option>
+    </select>
+</div>
+<!-- 
+    Content to be filtered
+    <div id="content">
+        <div class="item" data-category="category1">Item 1 (Category 1)</div>
+        <div class="item" data-category="category2">Item 2 (Category 2)</div>
+        <div class="item" data-category="category1">Item 3 (Category 1)</div>
+        <div class="item" data-category="category3">Item 4 (Category 3)</div>
+    </div> -->
+
  <h2 class="prod_name">Products</h2>
         <p class="navigation">Home/ Products</p>
 		
@@ -49,5 +77,55 @@
 		</section>
 		
 <jsp:include page="footer.jsp"/>
+
+<script>
+function search() {
+	  // Get the value of the search box and convert it to lowercase
+	  const searchbox = searchBox.value.toLowerCase();
+
+	  // Find all elements with class 'Box'
+	  const box = document.querySelectorAll(".Prod_card");
+
+	  // Loop through each 'Box' element
+	  for (let i = 0; i < box.length; i++) {
+	    // Find the first <h3> element inside the current 'Box' element
+	    const match = box[i].getElementsByTagName("p")[0];
+
+	    if (match) {
+	      // Get the text content of the <h3> element and convert it to lowercase
+	      const textvalue = match.textContent || match.innerHTML;
+	      const lowercaseTextValue = textvalue.toLowerCase().trim();
+
+	      // Show the 'Box' element if the search text matches the <h3> text
+	      if (lowercaseTextValue.indexOf(searchbox) > -1) {
+	        box[i].style.display = "";
+	      } else {
+	        box[i].style.display = "none";
+	      }
+	    }
+	  }
+	}
+
+	// Get the search box element and add an event listener for when the user types
+	const searchBox = document.getElementById("search-item");
+	searchBox.addEventListener("keyup", search);
+	
+	
+	 const filterSelect = document.getElementById('filter');
+     const items = document.querySelectorAll('.item');
+
+     filterSelect.addEventListener('change', function () {
+         const selectedCategory = filterSelect.value;
+
+         items.forEach(item => {
+             const itemCategory = item.getAttribute('data-category');
+             if (selectedCategory === 'all' || selectedCategory === itemCategory) {
+                 item.style.display = 'block';
+             } else {
+                 item.style.display = 'none';
+             }
+         });
+     });
+</script>
 </body>
 </html>

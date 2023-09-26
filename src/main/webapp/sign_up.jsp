@@ -172,7 +172,6 @@ a:hover {
     `<%=error%>`
   );
 
-  
   setTimeout(function() {
     Notify.closeAll(); 
   }, 100000); 

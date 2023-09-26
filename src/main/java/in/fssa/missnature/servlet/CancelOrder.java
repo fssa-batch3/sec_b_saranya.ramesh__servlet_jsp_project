@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import in.fssa.missnature.exception.PersistanceException;
 import in.fssa.missnature.exception.ServiceException;
 import in.fssa.missnature.logger.Logger;
+import in.fssa.missnature.model.User;
 import in.fssa.missnature.service.OrderService;
 
 /**
@@ -28,8 +30,12 @@ public class CancelOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession httpSession = request.getSession(false);
+		User sessionCheck = (User) httpSession.getAttribute("loggedInEmail");
+		if (sessionCheck == null) {
+			response.sendRedirect(request.getContextPath() + "/sign_in.jsp");
+		}else {
 		String orderId = request.getParameter("id");
-		
 		OrderService os = new OrderService();
 		try {
 			os.cancelOrder(Integer.parseInt(orderId));
@@ -38,10 +44,8 @@ public class CancelOrder extends HttpServlet {
 		} catch(ServiceException | NumberFormatException e) {
 			Logger.info(e);
 			e.printStackTrace();
-			
 		}
 	}
-
-	
+}
 
 }
